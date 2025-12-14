@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMI Calculator</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="card">
+      <h1>BMI Calculator</h1>
+      <p class="subtitle">Enter your weight and height to calculate your BMI.</p>
+
+      <div id="errorBox" class="error" hidden>
+        Please enter valid positive numbers for weight and height.
+      </div>
+
+      <form class="form" action="/calculate-bmi" method="POST">
+        <label class="field">
+          <span>Weight (kg)</span>
+          <input type="number" name="weight" min="0.1" step="0.1"  required />
+        </label>
+
+        <label class="field">
+          <span>Height (m)</span>
+          <input type="number" name="height" min="0.1" step="0.01"  required />
+        </label>
+
+        <button class="btn" type="submit">Calculate BMI</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('error') === '1') {
+      document.getElementById('errorBox').hidden = false;
+    }
+  </script>
+</body>
+</html>
